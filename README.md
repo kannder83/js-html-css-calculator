@@ -1,2 +1,2 @@
-# js-html-css-calctulator
+# js-html-css-calculator
 Proyecto de calculadora
