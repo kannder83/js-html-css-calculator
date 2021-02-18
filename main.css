@@ -1,0 +1,52 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calc-box {
+  width: 32rem;
+  border: 0.1px solid red;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto;
+}
+
+.calc-box-display {
+  width: 100%;
+}
+
+.calc-box-display input {
+  width: 100%;
+  height: 5rem;
+  text-align: right;
+  font-size: 4rem;
+  outline: none;
+}
+
+.calc-box-buttons {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+}
+
+.buttons {
+  width: 100%;
+  height: 5rem;
+  border: 0.1px red solid;
+  display: grid;
+  place-items: center;
+  font-size: 4rem;
+}
