@@ -1,3 +1,4 @@
+/*
 const calcDisplay = document.getElementById("display");
 const btnOne = document.getElementById("one");
 const btnTwo = document.getElementById("two");
@@ -37,3 +38,21 @@ btnNine.addEventListener("click", () => reciveFromButtons(9));
 
 //Oprimiendo Operaciones:
 btnPlus.addEventListener("click", () => reciveFromButtons("plus"));
+
+
+const persona = {
+  nombre: "Juan",
+  apellido: "Francisco",
+  edad: 26,
+  altura: 1.76,
+};
+
+console.log(`El nombre es ${persona.nombre}`);
+console.log(`El apellido es ${persona.apellido}`);
+console.log(`El nombre completo es ${persona.nombre} ${persona.apellido}`);
+
+let nuevaEdad = persona.edad + 12;
+console.log(nuevaEdad);
+
+
+*/
