@@ -13,6 +13,27 @@ function updateDisplay() {
   display.value = calculator.displayValue;
 }
 
+function inputDigit(digit) {
+  const { displayValue } = calculator;
+  // Overwrite `displayValue` if the current value is '0' otherwise append to it
+  calculator.displayValue = displayValue === "0" ? digit : displayValue + digit;
+  /*
+  if(displayValue === '0'){
+    calculator.displayValue=digit;
+  }else{
+    calculator.displayValue=digit+displayValue;
+  }
+  */
+}
+
+function inputDecimal(dot) {
+  // If the `displayValue` property does not contain a decimal point
+  if (!calculator.displayValue.includes(dot)) {
+    // Append the decimal point
+    calculator.displayValue += dot;
+  }
+}
+
 const keys = document.querySelector(".calc-box-buttons");
 keys.addEventListener("click", (event) => {
   // Access the clicked element
@@ -20,7 +41,7 @@ keys.addEventListener("click", (event) => {
 
   // Check if the clicked element is a button.
   // If not, exit from the function
-  /*
+
   if (!target.matches("button")) {
     return;
   }
@@ -31,7 +52,9 @@ keys.addEventListener("click", (event) => {
   }
 
   if (target.classList.contains("decimal")) {
-    console.log("decimal", target.value);
+    //console.log("decimal", target.value);
+    inputDecimal(target.value);
+    updateDisplay();
     return;
   }
 
@@ -39,10 +62,12 @@ keys.addEventListener("click", (event) => {
     console.log("clear", target.value);
     return;
   }
-  */
-  console.log(target);
-  console.log(target.id);
-  console.log("digit", target.value);
+
+  // console.log(target);
+  // console.log(target.id);
+  // console.log("digit", target.value);
+  inputDigit(target.value);
+  updateDisplay();
 });
 
 updateDisplay();
