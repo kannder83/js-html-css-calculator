@@ -13,17 +13,34 @@ function updateDisplay() {
   display.value = calculator.displayValue;
 }
 
+/*
 function inputDigit(digit) {
   const { displayValue } = calculator;
   // Overwrite `displayValue` if the current value is '0' otherwise append to it
   calculator.displayValue = displayValue === "0" ? digit : displayValue + digit;
-  /*
+  
   if(displayValue === '0'){
     calculator.displayValue=digit;
   }else{
     calculator.displayValue=digit+displayValue;
   }
-  */
+  
+  console.log(calculator);
+}
+*/
+
+function inputDigit(digit) {
+  const { displayValue, waitingForSecondOperand } = calculator;
+
+  if (waitingForSecondOperand === true) {
+    calculator.displayValue = digit;
+    calculator.waitingForSecondOperand = false;
+  } else {
+    calculator.displayValue =
+      displayValue === "0" ? digit : displayValue + digit;
+  }
+
+  console.log(calculator);
 }
 
 function inputDecimal(dot) {
@@ -32,6 +49,25 @@ function inputDecimal(dot) {
     // Append the decimal point
     calculator.displayValue += dot;
   }
+}
+
+function handleOperator(nextOperator) {
+  // Destructure the properties on the calculator object
+  const { firstOperand, displayValue, operator } = calculator;
+  // `parseFloat` converts the string contents of `displayValue`
+  // to a floating-point number
+  const inputValue = parseFloat(displayValue);
+
+  // verify that `firstOperand` is null and that the `inputValue`
+  // is not a `NaN` value
+  if (firstOperand === null && !isNaN(inputValue)) {
+    // Update the firstOperand property
+    calculator.firstOperand = inputValue;
+  }
+
+  calculator.waitingForSecondOperand = true;
+  calculator.operator = nextOperator;
+  console.log(calculator);
 }
 
 const keys = document.querySelector(".calc-box-buttons");
@@ -47,7 +83,10 @@ keys.addEventListener("click", (event) => {
   }
 
   if (target.classList.contains("operator")) {
-    console.log("operator", target.value);
+    //console.log("operator", target.value);
+    handleOperator(target.value);
+    updateDisplay();
+
     return;
   }
 
